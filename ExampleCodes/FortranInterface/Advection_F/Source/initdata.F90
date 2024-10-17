@@ -5,6 +5,7 @@ module initdata_module
   use my_amr_module, only : restart, plot_int
   use plotfile_module, only : writeplotfile
   use averagedown_module, only : averagedown
+  use restart_module
 
   implicit none
 
@@ -23,7 +24,9 @@ contains
 
        if (plot_int .gt. 0) call writeplotfile
     else
-       call amrex_abort("init from checkpoint not implemented yet")
+       call readcheckpointfile()
+       print*, "Reading checkpoint file done"
+       !call amrex_abort("init from checkpoint not implemented yet")
     end if
   end subroutine initdata
 

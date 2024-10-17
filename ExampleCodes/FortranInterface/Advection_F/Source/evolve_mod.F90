@@ -15,13 +15,25 @@ module evolve_module
 contains
 
   subroutine evolve ()
-    use my_amr_module, only : stepno, max_step, stop_time, dt, plot_int
-    use amr_data_module, only : phi_old, phi_new, t_new
+    use my_amr_module, only : stepno, max_step, stop_time, dt, plot_int, check_int, restart
+    use amr_data_module, only : phi_old, phi_new, t_new, stepno_vec, dt_vec
     use compute_dt_module, only : compute_dt
     use plotfile_module, only : writeplotfile
+    use restart_module
     real(amrex_real) :: cur_time
     integer :: last_plot_file_step, step, lev, substep, finest_level
 
+    print*, "reaching before here"
+     if(len_trim(restart).ne.0)then
+      do lev=0,amrex_get_finest_level()
+         stepno(lev)=stepno_vec(lev)
+         dt(lev)=dt_vec(lev)
+      enddo
+      call writeplotfile()
+      print*, "writing plot file done"
+      !stop
+    endif
+   
     cur_time = t_new(0)
     last_plot_file_step = 0;
 
@@ -55,6 +67,10 @@ contains
           last_plot_file_step = step+1
           call writeplotfile()
        end if
+   
+       if (check_int .gt. 0 .and. mod(step+1,check_int) .eq. 0)then
+          call writecheckpointfile (stepno,finest_level,dt,t_new,phi_new(0:finest_level)%ba%p,phi_new(0:finest_level)%p)
+       endif
 
        if (cur_time .ge. stop_time - 1.e-6_amrex_real*dt(0)) exit
     end do
@@ -98,7 +114,7 @@ contains
                 dt(k) = dt(k-1) / amrex_ref_ratio(k-1)
              end do
 
-             call pc%redistribute(lev)
+             !call pc%redistribute(lev)
           end if
        end if
     end if
@@ -131,7 +147,7 @@ contains
        else
           redistribute_ngrow = substep
        end if
-       call pc%redistribute(lev, amrex_get_finest_level(), redistribute_ngrow)
+       !call pc%redistribute(lev, amrex_get_finest_level(), redistribute_ngrow)
     end if
 
   end subroutine timestep
@@ -241,14 +257,14 @@ contains
        end if
 
        ! advance particles on this tile
-       particles => pc%get_particles(lev, mfi)
-       call advect_particles(particles, size(particles), &
-            pux, lbound(pux), ubound(pux), &
-            puy, lbound(puy), ubound(puy), &
-#if BL_SPACEDIM == 3
-            puz, lbound(puz), ubound(puz), &
-#endif
-            dt, amrex_geom(lev)%dx, amrex_problo)
+       !particles => pc%get_particles(lev, mfi)
+       !call advect_particles(particles, size(particles), &
+        !    pux, lbound(pux), ubound(pux), &
+         !   puy, lbound(puy), ubound(puy), &
+!#if BL_SPACEDIM == 3
+ !           puz, lbound(puz), ubound(puz), &
+!#endif
+ !           dt, amrex_geom(lev)%dx, amrex_problo)
 
     end do
     call amrex_mfiter_destroy(mfi)

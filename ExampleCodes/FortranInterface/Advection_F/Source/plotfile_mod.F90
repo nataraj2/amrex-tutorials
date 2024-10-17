@@ -39,7 +39,7 @@ contains
     call amrex_write_plotfile(name, nlevs, phi_new, varname, amrex_geom, &
          t_new(0), stepno, amrex_ref_ratio)
 
-    call pc%write(name, "Tracer", .true.)
+    !call pc%write(name, "Tracer", .true.)
 
   end subroutine writeplotfile
 

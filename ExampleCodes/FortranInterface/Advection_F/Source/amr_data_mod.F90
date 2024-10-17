@@ -10,7 +10,7 @@ module amr_data_module
   implicit none
 
   private
-  public :: t_new, t_old, phi_new, phi_old, flux_reg, pc
+  public :: t_new, t_old, phi_new, phi_old, flux_reg, pc, stepno_vec, dt_vec
   public :: amr_data_init, amr_data_finalize
 
   real(rt), allocatable :: t_new(:)
@@ -20,6 +20,9 @@ module amr_data_module
   type(amrex_multifab), allocatable :: phi_old(:)
 
   type(amrex_fluxregister), allocatable :: flux_reg(:)
+
+  integer, allocatable, save :: stepno_vec(:)
+  real(rt), allocatable, save :: dt_vec(:)
 
   type(amrex_particlecontainer) :: pc
 
@@ -36,6 +39,9 @@ contains
     allocate(phi_old(0:amrex_max_level))
 
     allocate(flux_reg(0:amrex_max_level))
+
+    allocate(stepno_vec(0:amrex_max_level))
+    allocate(dt_vec(0:amrex_max_level))
   end subroutine amr_data_init
 
   subroutine amr_data_finalize
