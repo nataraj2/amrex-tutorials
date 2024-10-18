@@ -1,5 +1,8 @@
 # AMReX Tutorial: Single Vortex Example
 
+Note that there is no particle support for restart. Hence the particle 
+routines in `evolve_mod.F90` have been commented out.
+
 ## Installation and Setup
 
 1. **Install AMReX**  
