@@ -1,4 +1,4 @@
-AMREX_HOME ?= ../../../../../amrex
+AMREX_HOME ?= ../../../../../../../../amrex
 TOP := ../../../Advection_F
 
 include $(AMREX_HOME)/Tools/GNUMake/Make.defs
