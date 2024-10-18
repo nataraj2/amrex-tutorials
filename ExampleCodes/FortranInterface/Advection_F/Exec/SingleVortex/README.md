@@ -18,7 +18,7 @@
 	```
 
 4. **Change Directory to the Example Code**  
-   cd `amrex-tutorials/ExampleCodes/FortranInterface/Advection_F/Exec/SingleVortex`
+   `cd ExampleCodes/FortranInterface/Advection_F/Exec/SingleVortex`
 
 ## Compilation and Execution
 
