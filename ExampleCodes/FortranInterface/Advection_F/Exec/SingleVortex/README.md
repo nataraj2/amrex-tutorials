@@ -38,5 +38,7 @@ amr.check_int  = 5        # number of timesteps between checkpoint files
 #amr.restart = chk00100    # specify checkpoint file for restart
 ```
 - `amr.check_int` specifies the frequency of writing checkpoint. `amr.restart` specifies the restart file for doing a restart. 
-Once the initial run is complete, you can uncomment the `amr.restart` option and run again.
+Once the initial run is complete, you can uncomment the `amr.restart` option and run again. Note that, during restart, the 
+`amr.max_level` can be equal to or larger than what the restart file has (but not less than that). 
+The code automatically fills the finer levels.
 
