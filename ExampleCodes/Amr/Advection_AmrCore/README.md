@@ -4,21 +4,10 @@ This repository provides an example of the **Zalesak disk test case** using the 
 
 ```sh
 git clone --recursive https://github.com/AMReX-Codes/amrex.git
-```
-```sh
 cd amrex/Tutorials
-```
-
-```sh
 git clone --recursive https://github.com/nataraj2/amrex-tutorials.git
-```
-
-```sh
 cd amrex-tutorials/
 git checkout zalesak_disk
-```
-
-```sh
 cd ExampleCodes/Amr/Advection_AmrCore/Exec
 make -j8
 ```
