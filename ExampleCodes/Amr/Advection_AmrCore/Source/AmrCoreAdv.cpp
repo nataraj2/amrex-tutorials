@@ -274,6 +274,7 @@ void AmrCoreAdv::MakeNewLevelFromScratch (int lev, Real time, const BoxArray& ba
     }
 
     MultiFab& state = phi_new[lev];
+	state.setVal(0.0);
 
     const auto problo = Geom(lev).ProbLoArray();
     const auto dx     = Geom(lev).CellSizeArray();

@@ -2,7 +2,7 @@
 # Run until nsteps == max_step or time == stop_time, 
 #     whichever comes first
 # *****************************************************************
-max_step  = 1000
+max_step  = 300
 stop_time = 2.0
 
 # *****************************************************************
@@ -13,12 +13,12 @@ stop_time = 2.0
 # *****************************************************************
 # Problem size and geometry
 # *****************************************************************
-geometry.prob_lo     =  0.0  0.0  0.0 
-geometry.prob_hi     =  1.0  1.0  0.125
+geometry.prob_lo     =  -0.5  -0.5  0.0 
+geometry.prob_hi     =   0.5   0.5  0.125
 
 # 1 = periodic
 # 0 = walls (homogeneous Neumann, dphi/dn=0)
-geometry.is_periodic =  1    1    1
+geometry.is_periodic =  0    0    0
 
 # *****************************************************************
 # VERBOSITY
@@ -71,7 +71,7 @@ adv.phierr = 1.01  1.1  1.5
 # Plotfile name and frequency
 # *****************************************************************
 amr.plot_file  = plt    # root name of plot file
-amr.plot_int   =  10    # number of timesteps between plot files
+amr.plot_int   =  30    # number of timesteps between plot files
                         # if negative then no plot files will be written
 
 # *****************************************************************

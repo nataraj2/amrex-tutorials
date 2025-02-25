@@ -11,7 +11,7 @@ state_error (int i, int j, int k,
              amrex::Array4<amrex::Real const> const& state,
              amrex::Real phierr, char tagval)
 {
-    if (state(i,j,k) > phierr)
+    if (state(i,j,k) > 1e-6 and state(i,j,k) < 1.0-1e-6)
         tag(i,j,k) = tagval;
 }
 

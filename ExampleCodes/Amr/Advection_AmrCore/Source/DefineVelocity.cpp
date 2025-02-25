@@ -16,6 +16,7 @@ void
 AmrCoreAdv::DefineVelocityAtLevel (int lev, Real time)
 {
     const auto dx = geom[lev].CellSizeArray();
+	const auto prob_lo = Geom(lev).ProbLoArray();
 
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (Gpu::notInLaunchRegion())
@@ -61,11 +62,11 @@ AmrCoreAdv::DefineVelocityAtLevel (int lev, Real time)
                  AMREX_D_DECL(
                      [=] AMREX_GPU_DEVICE (int i, int j, int k)
                      {
-                         get_face_velocity_x(i, j, k, vel[0], psi, dx[1]);
+                         get_face_velocity_x(i, j, k, vel[0], psi, dx[1], prob_lo);
                      },
                      [=] AMREX_GPU_DEVICE (int i, int j, int k)
                      {
-                         get_face_velocity_y(i, j, k, vel[1], psi, dx[0]);
+                         get_face_velocity_y(i, j, k, vel[1], psi, dx[0], prob_lo);
                      },
                      [=] AMREX_GPU_DEVICE (int i, int j, int k)
                      {
