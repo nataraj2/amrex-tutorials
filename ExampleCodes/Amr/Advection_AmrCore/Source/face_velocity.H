@@ -41,7 +41,7 @@ void get_face_velocity_x(int i, int j, int k,
 						 const amrex::GpuArray<amrex::Real, 3>& prob_lo)
 {
 	amrex::Real y = prob_lo[1] + j*dy;
-    vx(i,j,k) = -2.0*M_PI*y;
+    vx(i,j,k) = 0.2;//-2.0*M_PI*y;
 }
 
 AMREX_GPU_DEVICE
@@ -53,7 +53,7 @@ void get_face_velocity_y(int i, int j, int k,
 						 const amrex::GpuArray<amrex::Real, 3>& prob_lo)
 {
 	amrex::Real x = prob_lo[0] + i*dx;
-    vy(i,j,k) = 2.0*M_PI*x;
+    vy(i,j,k) = 0.0;//2.0*M_PI*x;
 }
 
 AMREX_GPU_DEVICE

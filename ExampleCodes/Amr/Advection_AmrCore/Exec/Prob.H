@@ -97,11 +97,11 @@ void initdata(amrex::Box const& bx,
     const auto lo = lbound(bx);
     const auto hi = ubound(bx);
 
-	amrex::GpuArray<amrex::Real, 3> center = {0.0, 0.25, 0.0};
+	amrex::GpuArray<amrex::Real, 3> center = {-1e10-0.25, 0.0, 0.0};
 	amrex::GpuArray<amrex::Real, 3> xyz;
-	amrex::Real radius = 0.15;
-	amrex::Real width = 0.05;
-	amrex::Real height = 0.25;
+	amrex::Real radius = 1e10;
+	amrex::Real width = 0.0;
+	amrex::Real height = 0.0;
 	amrex::Real nfine = 50;
 	
 	 for (int k = lo.z; k <= hi.z; ++k) {
