@@ -1,6 +1,6 @@
-# Zalesak Disk Advection with AMReX
+# Plane Advection with AMReX
 
-This repository provides an example of the **Zalesak disk test case** using the **AMReX framework** for advection simulations.
+This repository provides an example of a plane in the x-direction using the **AMReX framework** for advection simulations.
 
 ```sh
 git clone --recursive https://github.com/AMReX-Codes/amrex.git
