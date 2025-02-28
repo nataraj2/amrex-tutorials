@@ -14,3 +14,22 @@ mpirun -np 4 main3d.gnu.MPI.ex inputs
 ```
 <img src="Images/Zalesak_0level.gif?raw=true&v=100" alt="Zalesak 0 Level" width="50%" height="50%" loop="true" autoplay="true"><img src="Images/Zalesak_2level.gif?raw=true&v=100" alt="Zalesak 2 Level" width="50%" height="50%" loop="true" autoplay="true">
 
+To install ASCENT
+
+```sh
+git clone https://github.com/spack/spack.git 
+. spack/share/spack/setup-env.sh
+spack install ascent
+spack load ascent
+spack load conduit
+```
+Add in ~/.bashrc
+```sh
+export PATH=$(spack location -i ascent)/bin:$PATH
+export LD_LIBRARY_PATH=$(spack location -i ascent)/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$(spack location -i conduit)/lib:$LD_LIBRARY_PATH
+```
+```sh
+source ~/.bashrc
+```
+
