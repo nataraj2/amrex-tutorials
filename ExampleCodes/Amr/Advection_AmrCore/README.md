@@ -12,6 +12,6 @@ cd ExampleCodes/Amr/Advection_AmrCore/Exec
 make -j8
 mpirun -np 4 main3d.gnu.MPI.ex inputs
 
-![0level](./Images/Zalesak_0level.gif)
-![2level](./Images/Zalesak_2level.gif)
+![0level](Images/Zalesak_0level.gif)
+![2level](Images/Zalesak_2level.gif)
 ```
