@@ -11,4 +11,7 @@ git checkout zalesak_disk
 cd ExampleCodes/Amr/Advection_AmrCore/Exec
 make -j8
 mpirun -np 4 main3d.gnu.MPI.ex inputs
+
+![0level](Zalesak_0level.gif)
+![2level](Zalesak_2level.gif)
 ```
